@@ -3,7 +3,7 @@ from operator import concat
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from account.forms import UpdateProfileForm
-from .models import AccountUser, Profile
+from .models import AccountUser, Friend_Request, Profile
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/')
@@ -30,3 +30,15 @@ def user_list(request):
     context['allUser'] = allUser
     context['profile'] = profile
     return render(request, "account/userList.html", context)
+
+@login_required(login_url='/')
+def send_friend_request(request, receiverID):
+    sender = Profile.objects.get(user=request.user)
+    receiver = Profile.objects.get(user__id=receiverID)
+    friend_Request, created = Friend_Request.objects.get_or_create(sender=sender,receiver=receiver)
+    if created:
+        messages.success(request, 'friend request sent')
+    else:
+        messages.error(request, 'friend request was aldready sent')
+    # return render(request, "account/userList.html")
+    return redirect('user_list')

@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(),  name='logout'),
     path('profile/', views.profile_view, name='profile'),
     path('user_list/', views.user_list, name='user_list'),
+    path('send_friend_request/<int:receiverID>', views.send_friend_request, name='send_friend_request'),
 ]

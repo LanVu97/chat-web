@@ -36,3 +36,11 @@
   color: white;
   cursor:pointer; 
 }
+.success{
+  background-color: #43a047;
+  color: #fff;
+}
+.error{
+  background-color: #c62828;
+  color: #fff;
+}
