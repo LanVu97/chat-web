@@ -1,6 +1,7 @@
 
 from email.policy import default
 import json
+from statistics import mode
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -30,6 +31,7 @@ class Profile(models.Model):
     user = models.OneToOneField(AccountUser, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, upload_to='account' )
     country = models.CharField(blank=True, max_length=200)
+    friends = models.ManyToManyField("Profile", blank=True)
 
     def __str__(self) -> str:
         return f'{self.user.username} Profile'
@@ -56,3 +58,7 @@ def save_profile(backend, user, response, *args, **kwargs):
         profile.username = user.username
         profile.country = response['locale']
         profile.save()
+
+class Friend_Request(models.Model):
+    sender = models.ForeignKey(Profile, related_name='sender', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Profile, related_name='receiver', on_delete=models.CASCADE)

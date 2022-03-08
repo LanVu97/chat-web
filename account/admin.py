@@ -2,7 +2,7 @@ from django.contrib import admin
 # from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
-from account.models import AccountUser, Profile
+from account.models import AccountUser, Friend_Request, Profile
 
 # Register your models here.
 class UserCustomAdmin(UserAdmin):
@@ -19,6 +19,6 @@ class UserCustomAdmin(UserAdmin):
         list_filter = ('email', 'is_staff', 'is_active',)
 
 admin.site.register(Profile)
-
+admin.site.register(Friend_Request)
 admin.site.register(AccountUser, UserCustomAdmin)
 

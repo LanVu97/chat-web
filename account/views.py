@@ -1,8 +1,9 @@
 
+from operator import concat
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from account.forms import UpdateProfileForm
-from .models import Profile
+from .models import AccountUser, Profile
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/')
@@ -19,3 +20,13 @@ def profile_view(request):
         profile = UpdateProfileForm(instance=request.user.profile)
         context['profile'] = profile
     return render(request, "account/profile.html", context)
+
+
+@login_required(login_url='/')
+def user_list(request):
+    context = {}
+    allUser =  AccountUser.objects.all() 
+    profile = Profile.objects.get(user = request.user)
+    context['allUser'] = allUser
+    context['profile'] = profile
+    return render(request, "account/userList.html", context)

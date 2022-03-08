@@ -59,9 +59,11 @@
 
                 <!-- Dropdown Structure -->
                 <ul id="dropdown1" class="dropdown-content">
-                    <li><a href="#!"><i class="large material-icons">face</i> See your profile </a></li>
+                    <li><a href="{% url 'profile' %}"><i class="large material-icons">face</i> See your profile </a></li>
                     <li class="divider"></li>
-                    <li><a href="#!"><i class="large material-icons">input</i>log out</a></li>
+                    <li><a href="{% url 'user_list' %}"><i class="large material-icons">account_box</i>User List</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'logout' %}"><i class="large material-icons">input</i>log out</a></li>
                 </ul>
             </li>
             </li>
