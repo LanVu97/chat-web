@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+{% block navigation %}{% endblock %}
+{% block content %}
+        <div class="section red lighten-3">
+            <div class="container white-text center-align text">
+            <h2>Chat App</h2>
+            <p>A simple Chat App using Django Framework</p>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+            <div class="col s12 m8 l6 offset-m2 offset-l3">
+                <div class="section center-block">
+                <div>                  
+                    <h3>
+                    Login
+                    </h3>
+
+                  
+                    <div class="col s12 ">
+
+                        <div class="card horizontal">
+
+                          <div class="card-stacked">
+
+                            <div class="card-action">
+                                {% if user.is_authenticated %}
+                                <p>Logged as {{ user.username }}</p>
+                                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                                {% else %}
+
+                                
+                                <div class="col s12 m8 offset-m2 center-align">
+                                  <a class="oauth-container btn darken-4 white black-text" href="{% url 'social:begin' 'google-oauth2' %}" style="text-transform:none">
+                                      <div class="left">
+                                          <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 
+                                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                      </div>
+                                      Login with Google
+                                  </a>
+                                </div>
+                                {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+       
+{% endblock %}

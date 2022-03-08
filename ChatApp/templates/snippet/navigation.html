@@ -1,0 +1,70 @@
+<nav class="lighten-3">
+
+    <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">Chat app</a>
+        
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a class="dropdown-trigger" href="#!" data-activates="notification" data-target="dropdown2">
+                    <i class="material-icons white-text notif">notifications</i>
+                    <small class="notification-badge">5</small>
+                  </a>
+                  <ul id="dropdown2" class="dropdown-content">
+                    <li>
+
+                        <div class="col s12 m8 offset-m2 l6 offset-l3">
+                            <div class="card-panel grey lighten-5 z-depth-1 card-margin">
+                              <div class="row valign-wrapper">
+                                <div class="col s2 ">
+                                  <img src="#" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s10">
+                                  <span class="black-text">
+                                    This is a square image. Add the "circle" class
+                                  </span>
+                                </div>
+                              </div>
+                              <a class="waves-effect waves-light btn-small ">Accept</a>
+                              <a class="waves-effect waves-light btn-small grey">Decline</a>
+                            </div>
+                          </div>
+                    </li>
+                    <li>
+
+                        <div class="col s12 m8 offset-m2 l6 offset-l3">
+                            <div class="card-panel grey lighten-5 z-depth-1 card-margin">
+                              <div class="row valign-wrapper">
+                                <div class="col s2">
+                                  <img src="#" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s10">
+                                  <span class="black-text">
+                                    This is a square image. Add the "circle" class
+                                  </span>
+                                </div>
+                              </div>
+                              <a class="waves-effect waves-light btn-small ">Accept</a>
+                              <a class="waves-effect waves-light btn-small grey">Decline</a>
+                            </div>
+                          </div>
+                    </li>
+
+                  </ul>
+            </li>
+            
+            
+            <!-- Dropdown Trigger -->
+            <li >
+                <a class="dropdown-trigger" href="#" data-target="dropdown1"  ><img src="{{request.user.profile.image.url}}" alt="" class="circle responsive-img user" style="width:50px; height: 50px;" />{{request.user.username}}<i class="material-icons right">arrow_drop_down</i></a>
+
+                <!-- Dropdown Structure -->
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="#!"><i class="large material-icons">face</i> See your profile </a></li>
+                    <li class="divider"></li>
+                    <li><a href="#!"><i class="large material-icons">input</i>log out</a></li>
+                </ul>
+            </li>
+            </li>
+        </ul>
+    </div>
+</nav>

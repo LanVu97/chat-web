@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col s8">
+        <form class="col s12" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="card">
+          <div class="center-align">
+
+            <div class="holder">
+              <img id="imgPreview" src="{{profile.image.url}}" class="img-circle" alt="pic" style="width:200px; height: 200px;"/>
+          </div>
+            <input accept="image/*" type='file' id="photo"  name="avatar" required="true" />
+           </div>
+          <div class="card-content">
+            <div class="row">
+              
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate" value="{{profile.user.username}}">
+                    <label for="first_name">User Name</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" value="{{profile.country}}">
+                    <label for="last_name">Country</label>
+                  </div>
+                </div>
+                <div class="row">
+                    
+                   <span>
+                    <label>
+                      <input name="gender" type="radio"/>
+                      <span>Male</span>
+                    </label>
+                  </span>
+                  <span>
+                    <label>
+                      <input name="gender" type="radio" />
+                      <span>Female</span>
+                    </label>
+                  </span>
+
+                </div>
+
+                <div class="right-align">
+                  <a class="waves-effect waves-light btn blue">Update</a>
+                </div>
+
+              </form>
+            </div>
+                  
+          </div>
+          <div class="card-action">
+ 
+          </div>
+        </div>
+      </div>
+      
+        <div class="col s3">
+          <div class="card horizontal">
+
+              <div class="card-content">
+                <i class="small material-icons">account_box</i>
+                
+                <p>Friend(30)</p>
+              </div>
+
+          </div>
+        </div>
+        <div class="col s3">
+          <div class="card horizontal">
+
+              <div class="card-content">
+                <i class="small material-icons">add_circle</i>
+                <p>Friend request(30)</p>
+                
+              </div>
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(() => {
+        $("#photo").change(function () {
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (event) {
+                    $("#imgPreview")
+                      .attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+
+{% endblock %}

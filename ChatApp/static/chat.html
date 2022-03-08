@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+<div class="section" style="height: 80vh">
+    <div class="row">
+        <div class="col s3">
+            <div class="card">
+                <div class="collection">
+
+                    <a href="#" id="#" class="collection-item row">
+                        <img src="https://frontend-1.adjust.com/new-assets/images/site-images/interface/user.svg"
+                            class="col s4">
+                        <div class="col s8">
+                            <span class="title" style="font-weight: bolder">Ln</span>
+                        </div>
+                    </a>
+                    <a href="#" id="#" class="collection-item row">
+                        <img src="https://frontend-1.adjust.com/new-assets/images/site-images/interface/user.svg"
+                            class="col s4">
+                        <div class="col s8">
+                            <span class="title" style="font-weight: bolder">User2</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <div class="card">
+                <div id="board" class="section grey lighten-3" style="height: 68vh; padding: 5px; overflow-y: scroll">
+                    {% block messages %}
+
+                    {% endblock %}
+                </div>
+                <form id="chat-box" class="form-group " method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col s11">
+                            <div class="input-field">
+                                <input id="id_message" name="message" type="text" placeholder="Type your message..">
+                            </div>
+                        </div>
+                        <div class="col s1" style="line-height: 80px">
+                            <button class="btn btn-floating blue lighten-2 waves-effect waves-light"><i
+                                    class="material-icons">send</i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
