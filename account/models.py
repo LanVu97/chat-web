@@ -1,10 +1,11 @@
 
+from email.policy import default
 import json
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.dispatch import receiver #add this
-from django.db.models.signals import post_save  #add this
+from django.dispatch import receiver 
+from django.db.models.signals import post_save 
 from social_core.backends.google import GoogleOAuth2
 # Create your models here.
         
@@ -33,7 +34,7 @@ class Profile(models.Model):
     def __str__(self) -> str:
         return f'{self.user.username} Profile'
 
-    @receiver(post_save, sender=AccountUser) #add this
+    @receiver(post_save, sender=AccountUser) 
     def create_user_profile(sender, instance, created, **kwargs):
         print('this is a instance',instance)
         if created:
@@ -43,20 +44,15 @@ import urllib.request
 from django.conf import settings
 def save_profile(backend, user, response, *args, **kwargs):
     if backend.name == 'google-oauth2':
-        # profile = user.get_profile()
-        # if profile is None:
-        print(user.id)
-        j = json.dumps(response, indent = 50) 
-        print(j)
+
         profile = Profile.objects.get(user__id=user.id)
         url = response['picture']
         local = settings.MEDIA_ROOT + 'account/'
-        # print(local)
+
         result = urllib.request.urlretrieve(url, f'{local}avatarUser_{user.id}.jpg')
         link = f'account/avatarUser_{user.id}.jpg'
-
-        print(link)
+      
         profile.image = link
-        profile.username = response['name']
+        profile.username = user.username
         profile.country = response['locale']
         profile.save()

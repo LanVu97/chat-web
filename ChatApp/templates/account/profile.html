@@ -1,54 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% include 'snippet/alerts.html' %}
   <div class="container">
     <div class="row">
       <div class="col s8">
-        <form class="col s12" enctype="multipart/form-data">
+        <form class="col s12" action="{% url 'profile' %}" enctype="multipart/form-data" method="post">
           {% csrf_token %}
         <div class="card">
           <div class="center-align">
 
             <div class="holder">
-              <img id="imgPreview" src="{{profile.image.url}}" class="img-circle" alt="pic" style="width:200px; height: 200px;"/>
+              <img id="imgPreview" src="{{profile.instance.image.url}}" class="img-circle" alt="pic" style="width:200px; height: 200px;"/>
           </div>
-            <input accept="image/*" type='file' id="photo"  name="avatar" required="true" />
+            <!-- <input accept="image/*" type='file' id="photo"  name="avatar" required="true" /> -->
+            {{ profile.image }}
            </div>
+           
           <div class="card-content">
             <div class="row">
               
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="first_name" type="text" class="validate" value="{{profile.user.username}}">
+                    {{ profile.username }}
                     <label for="first_name">User Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate" value="{{profile.country}}">
+                    {{ profile.country }}
                     <label for="last_name">Country</label>
                   </div>
                 </div>
                 <div class="row">
                     
-                   <span>
-                    <label>
-                      <input name="gender" type="radio"/>
-                      <span>Male</span>
-                    </label>
-                  </span>
-                  <span>
-                    <label>
-                      <input name="gender" type="radio" />
-                      <span>Female</span>
-                    </label>
-                  </span>
+
+                  <fieldset>
+                    <legend>{{ profile.gender.label }}</legend>
+                    {% for radio in profile.gender %}
+                    <div class="myradio">
+                        {{ radio }}
+                    </div>
+                    {% endfor %}
+                </fieldset>
 
                 </div>
 
                 <div class="right-align">
-                  <a class="waves-effect waves-light btn blue">Update</a>
+                  <button type="submit" class="waves-effect waves-light btn blue">Update</button>
                 </div>
 
-              </form>
+        </form>
             </div>
                   
           </div>
