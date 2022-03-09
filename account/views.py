@@ -57,3 +57,15 @@ def accept_friend_request(request, senderID):
         messages.error(request,'User do not have friend request from this sender')
     return redirect('user_list')
 
+@login_required(login_url='/')
+def decline_friend_request(request, requestID):
+    friend_request = Friend_Request.objects.get(id=requestID)
+    receiver = friend_request.receiver.user
+    
+    if receiver == request.user: 
+        friend_request.delete()
+        
+    else:
+        messages.error(request,'User do not have friend request from this sender')
+    return redirect('user_list')
+
