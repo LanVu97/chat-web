@@ -1,4 +1,4 @@
-.notification-badge {
+/* .notification-badge {
     position: relative;
     right: -15px;
     top: -20px;
@@ -7,9 +7,19 @@
     margin: 0 -.8em;
     border-radius: 50%;
     padding: 5px 10px;
+} */
+
+.notification-badge {
+  position:relative;
+  padding:5px 9px;
+  background-color: #fff;
+  color: #941e1e;
+  bottom: 15px;
+  left: 15px;
+  border-radius: 50%;
 }
 .notif{
-    position: absolute;
+    position: absolute ;
   }
 
 .card-margin
@@ -44,3 +54,6 @@
   background-color: #c62828;
   color: #fff;
 }
+/* .notif{
+  position:relative;
+} */

@@ -25,9 +25,9 @@ def profile_view(request):
 @login_required(login_url='/')
 def user_list(request):
     context = {}
-    allUser =  AccountUser.objects.all() 
+    allUser =  Profile.objects.all() 
     profile = Profile.objects.get(user = request.user)
-    context['allUser'] = allUser
+    context['allUserProfile'] = allUser
     context['profile'] = profile
     return render(request, "account/userList.html", context)
 
@@ -39,6 +39,15 @@ def send_friend_request(request, receiverID):
     if created:
         messages.success(request, 'friend request sent')
     else:
-        messages.error(request, 'friend request was aldready sent')
-    # return render(request, "account/userList.html")
+        messages.error(request, 'friend request was aldready sent')   
+    return redirect('user_list')
+
+@login_required(login_url='/')
+def accept_friend_request(request, senderID):
+    sender = Profile.objects.get(user__id=senderID)
+    receiver = Profile.objects.get(user=request.user)
+    friend_Request = Friend_Request.objects.get(sender=sender,receiver=receiver)
+    sender.friends.add(receiver)
+    receiver.friends.add(sender)
+    friend_Request.delete()
     return redirect('user_list')

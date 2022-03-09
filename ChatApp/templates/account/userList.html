@@ -1,29 +1,25 @@
+
 {% extends 'base.html' %}
+
 {% block content %}
 {% include 'snippet/alerts.html' %}
 <ul class="collection">
-  {% for user in allUser %}
-  {% if not user.is_superuser %}
+  {% for userPro in allUserProfile %}
+  {% if not userPro.user.is_superuser %}
  
     <li class="collection-item avatar">
-      <img src="{{user.profile.image.url}}" alt="" class="circle">
-      <span class="title">{{user.username}}</span>
-      {% if user not in profile.friends.all and user != request.user %}
+      <img src="{{userPro.image.url}}" alt="" class="circle">
+      <span class="title">{{userPro.user.username}}</span>
+      {% if userPro not in profile.friends.all and userPro.user != request.user %}
       
-      <a class=" btn secondary-content" href="{% url 'send_friend_request' user.id %}">Send a friend request</a>
-      {% elif  user != request.user %}
+      <a class=" btn secondary-content" href="{% url 'send_friend_request' userPro.user.id %}">Send a friend request</a>
+      {% elif  userPro.user != request.user %}
       <p><a href="#!" >send a message</a>     
       </p>
       <a class="blue lighten-1 btn secondary-content"><i class="material-icons left">done</i>Friend</a><br>
       {% endif %}
     </li>
-    <!-- <li class="collection-item avatar">
-      <i class="material-icons circle">folder</i>
-      <span class="title">Title</span>
-      
-      <a class="blue lighten-1 btn secondary-content"><i class="material-icons left">done</i>Friend</a><br>
-      
-    </li> -->
+
     {% endif %}
 {% endfor %}
   </ul>

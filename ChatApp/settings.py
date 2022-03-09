@@ -74,6 +74,8 @@ TEMPLATES = [
                 # social
                 'social_django.context_processors.backends',  # <--
                 'social_django.context_processors.login_redirect', # <--
+                #notification for friend request
+                'account.context_processors.get_friend_request'
             ],
         },
     },

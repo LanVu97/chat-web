@@ -7,47 +7,30 @@
             <li>
                 <a class="dropdown-trigger" href="#!" data-activates="notification" data-target="dropdown2">
                     <i class="material-icons white-text notif">notifications</i>
-                    <small class="notification-badge">5</small>
+                    <small class="notification-badge">{% if friend_requests %}{{friend_requests.count}} {% else %} 0 {% endif %}</small>
+                    
                   </a>
                   <ul id="dropdown2" class="dropdown-content">
+                    {% for req in  friend_requests %}
                     <li>
-
                         <div class="col s12 m8 offset-m2 l6 offset-l3">
                             <div class="card-panel grey lighten-5 z-depth-1 card-margin">
                               <div class="row valign-wrapper">
                                 <div class="col s2 ">
-                                  <img src="#" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                  <img src="{{req.sender.image.url}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
                                 </div>
                                 <div class="col s10">
                                   <span class="black-text">
-                                    This is a square image. Add the "circle" class
+                                    {{req.sender.username}} send you a friend reuquest
                                   </span>
                                 </div>
                               </div>
-                              <a class="waves-effect waves-light btn-small ">Accept</a>
-                              <a class="waves-effect waves-light btn-small grey">Decline</a>
+                              <a href="{% url 'accept_friend_request' req.sender.id %}" class="waves-effect waves-light btn-small ">Accept</a>
+                              <a href="#" class="waves-effect waves-light btn-small grey">Decline</a>
                             </div>
                           </div>
                     </li>
-                    <li>
-
-                        <div class="col s12 m8 offset-m2 l6 offset-l3">
-                            <div class="card-panel grey lighten-5 z-depth-1 card-margin">
-                              <div class="row valign-wrapper">
-                                <div class="col s2">
-                                  <img src="#" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                                </div>
-                                <div class="col s10">
-                                  <span class="black-text">
-                                    This is a square image. Add the "circle" class
-                                  </span>
-                                </div>
-                              </div>
-                              <a class="waves-effect waves-light btn-small ">Accept</a>
-                              <a class="waves-effect waves-light btn-small grey">Decline</a>
-                            </div>
-                          </div>
-                    </li>
+                    {% endfor %}
 
                   </ul>
             </li>
