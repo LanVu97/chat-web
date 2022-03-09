@@ -46,8 +46,14 @@ def send_friend_request(request, receiverID):
 def accept_friend_request(request, senderID):
     sender = Profile.objects.get(user__id=senderID)
     receiver = Profile.objects.get(user=request.user)
-    friend_Request = Friend_Request.objects.get(sender=sender,receiver=receiver)
-    sender.friends.add(receiver)
-    receiver.friends.add(sender)
-    friend_Request.delete()
+    # friend_request = ''
+    try:
+        friend_request = Friend_Request.objects.get(sender=sender,receiver=receiver)
+        sender.friends.add(receiver)
+        receiver.friends.add(sender)
+        friend_request.delete()
+        
+    except Friend_Request.DoesNotExist:
+        messages.error(request,'User do not have friend request from this sender')
     return redirect('user_list')
+
