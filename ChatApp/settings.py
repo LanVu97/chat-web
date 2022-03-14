@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'social_django',
+    'chat',
 ]
 
 AUTH_USER_MODEL = 'account.AccountUser'
