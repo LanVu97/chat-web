@@ -1,5 +1,6 @@
 
 from operator import concat
+from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from account.forms import UpdateProfileForm
@@ -18,6 +19,11 @@ def profile_view(request):
             return redirect('profile')
     else:
         profile = UpdateProfileForm(instance=request.user.profile)
+        user_profile = Profile.objects.get(user=request.user)
+        friends = user_profile.friends.all()
+        friend_request = Friend_Request.objects.filter(receiver=user_profile)       
+        context['friend_request'] = len(friend_request)
+        context['friends'] = len(friends)
         context['profile'] = profile
     return render(request, "account/profile.html", context)
 
