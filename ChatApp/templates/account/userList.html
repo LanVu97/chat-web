@@ -14,7 +14,7 @@
       
       <a class=" btn secondary-content" href="{% url 'send_friend_request' userPro.user.id %}">Send a friend request</a>
       {% elif  userPro.user != request.user %}
-      <p><a href="#!" >send a message</a>     
+      <p><a href="{% url 'message-detail' request.user.id userPro.user.id %}" >send a message</a>     
       </p>
       <a class="blue lighten-1 btn secondary-content"><i class="material-icons left">done</i>Friend</a><br>
       {% endif %}

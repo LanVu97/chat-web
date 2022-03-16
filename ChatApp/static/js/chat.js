@@ -45,9 +45,9 @@ function receive() {
             }
 
         },
-        error: function (response) {
-            alert('An error occured')
-        }
+        // error: function (response) {
+        //     alert('An error occured')
+        // }
     });
 
 }
