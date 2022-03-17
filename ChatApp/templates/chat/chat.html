@@ -24,11 +24,15 @@
         <div class="col s9">
             <div class="card">
                 <div id="board" class="section grey lighten-3" style="height: 68vh; padding: 5px; overflow-y: scroll">
+                    {% block hides %}
+                   
+                    <h4 class="center-align  black-text">Make friends to chat together</h4>
+                    {% endblock %}
                     {% block messages %}
 
                     {% endblock %}
                 </div>
-                <form id="chat-box" class="form-group">
+                <form id="chat-box" class="form-group {% block hide %}hide{% endblock %}">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col s11">
