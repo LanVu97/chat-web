@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
-import django_heroku
+# import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -124,22 +124,25 @@ WSGI_APPLICATION = 'ChatApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'f5fp4fv8g04j7',
-        'USER': 'pjvwofvjmpvunz',
-        'PASSWORD': '99fa1dbf68af53556b2fbbef491c2e552100dd90214efab5e295820b44602aa8',
-        'HOST': 'ec2-34-203-255-149.compute-1.amazonaws.com',
-        'PORT':  '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'f5fp4fv8g04j7',
+#         'USER': 'pjvwofvjmpvunz',
+#         'PASSWORD': '99fa1dbf68af53556b2fbbef491c2e552100dd90214efab5e295820b44602aa8',
+#         'HOST': 'ec2-34-203-255-149.compute-1.amazonaws.com',
+#         'PORT':  '5432'
+#     }
+# }
 
 
 # Password validation
@@ -191,4 +194,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
