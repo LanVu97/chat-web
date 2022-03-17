@@ -1,0 +1,1 @@
+web: gunicorn ChapApp.wsgi --log-file -
