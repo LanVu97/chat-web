@@ -28,7 +28,7 @@ PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'chatchat1407.herokuapp.com']
 
 
 # Application definition
