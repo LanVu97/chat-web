@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'account',
     'social_django',
     'chat',
+    # deploy
+     'whitenoise.runserver_nostatic',
 ]
 
 AUTH_USER_MODEL = 'account.AccountUser'
@@ -57,6 +59,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # social
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    # deploy
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ChatApp.urls'
@@ -167,7 +171,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(PROJECT_DIR, 'static')]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # media files config
 
 MEDIA_URL = '/media/'
