@@ -101,7 +101,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 LOGIN_URL = '/auth/login/google-oauth2/'
 
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'chat'
 LOGOUT_REDIRECT_URL = 'home'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
@@ -113,7 +113,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_user',
     'social_core.pipeline.user.get_username',
     'social_core.pipeline.user.create_user',
-    'account.models.save_profile',  # <--- set the path to the function
+    'account.pipeline.save_profile',  # <--- set the path to the function
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
@@ -185,10 +185,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(PROJECT_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_DIRS = [
-#     [os.path.join(PROJECT_DIR, 'static')],
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+
 # media files config
 
 MEDIA_URL = '/media/'

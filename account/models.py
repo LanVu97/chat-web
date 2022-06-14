@@ -36,28 +36,14 @@ class Profile(models.Model):
     def __str__(self) -> str:
         return f'{self.user.username} Profile'
 
-    @receiver(post_save, sender=AccountUser) 
-    def create_user_profile(sender, instance, created, **kwargs):
-        print('this is a instance',instance)
-        if created:
-            Profile.objects.create(user=instance)
+    # @receiver(post_save, sender=AccountUser) 
+    # def create_user_profile(sender, instance, created, **kwargs):
+    #     print('this is a instance',instance)
+    #     if created:
+    #         Profile.objects.create(user=instance)
  
-import urllib.request 
-from django.conf import settings
-def save_profile(backend, user, response, *args, **kwargs):
-    if backend.name == 'google-oauth2':
 
-        profile = Profile.objects.get(user__id=user.id)
-        url = response['picture']
-        local = settings.MEDIA_ROOT + 'account/'
 
-        result = urllib.request.urlretrieve(url, f'{local}avatarUser_{user.id}.jpg')
-        link = f'account/avatarUser_{user.id}.jpg'
-      
-        profile.image = link
-        profile.username = user.username
-        profile.country = response['locale']
-        profile.save()
 
 class Friend_Request(models.Model):
     sender = models.ForeignKey(Profile, related_name='sender', on_delete=models.CASCADE)

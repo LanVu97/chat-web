@@ -11,8 +11,8 @@ urlpatterns = [
     path('login/', include('social_django.urls', namespace='social')),
     path('logout/',LogoutView.as_view(),  name='logout'),
     path('profile/', views.profile_view, name='profile'),
-    path('user_list/', views.user_list, name='user_list'),
-    path('send_friend_request/<int:receiverID>', views.send_friend_request, name='send_friend_request'),
-    path('accept_friend_request/<int:senderID>', views.accept_friend_request, name='accept_friend_request'),
-    path('decline_friend_request/<int:requestID>', views.decline_friend_request, name='decline_friend_request'),
+    path('user-list/', views.user_list, name='user_list'),
+    path('send-friend-request/<int:receiverID>', views.send_friend_request, name='send_friend_request'),
+    path('accept-friend-request/<int:senderID>', views.accept_friend_request, name='accept_friend_request'),
+    path('decline-friend-request/<int:requestID>', views.decline_friend_request, name='decline_friend_request'),
 ]

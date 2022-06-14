@@ -33,6 +33,24 @@ def user_list(request):
     context = {}
     allUser =  Profile.objects.all() 
     profile = Profile.objects.get(user = request.user)
+   
+
+    for user in allUser:
+        sender = Profile.objects.get(user=request.user)
+        # Check friend request from  you to other
+        try:
+            request_send = Friend_Request.objects.get(sender=sender,receiver=user)
+            setattr(user,'was_send', True)
+            
+        except:
+                   # Check friend request from other to you
+            try:
+                request_received = Friend_Request.objects.get(sender=user,receiver=sender)
+                setattr(user,'was_received', True)
+                
+            except:
+                setattr(user,'was_send', False)
+
     context['allUserProfile'] = allUser
     context['profile'] = profile
     return render(request, "account/userList.html", context)
@@ -41,11 +59,11 @@ def user_list(request):
 def send_friend_request(request, receiverID):
     sender = Profile.objects.get(user=request.user)
     receiver = Profile.objects.get(user__id=receiverID)
-    friend_Request, created = Friend_Request.objects.get_or_create(sender=sender,receiver=receiver)
+    created = Friend_Request.objects.get_or_create(sender=sender,receiver=receiver)
+  
     if created:
         messages.success(request, 'friend request sent')
-    else:
-        messages.error(request, 'friend request was aldready sent')   
+   
     return redirect('user_list')
 
 @login_required(login_url='/')

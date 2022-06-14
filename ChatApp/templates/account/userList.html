@@ -11,8 +11,14 @@
       <img src="{{userPro.image.url}}" alt="" class="circle">
       <span class="title">{{userPro.user.username}}</span>
       {% if userPro not in profile.friends.all and userPro.user != request.user %}
-      
+        {% if userPro.was_send == False %}
       <a class=" btn secondary-content" href="{% url 'send_friend_request' userPro.user.id %}">Send a friend request</a>
+      {% elif userPro.was_received %}
+      <a class=" btn secondary-content" href="{% url 'accept_friend_request' userPro.user.id %}">Accept a friend request </a>
+      {% else %}
+      
+      <p class=" secondary-content">Pending....</p>
+      {% endif %}
       {% elif  userPro.user != request.user %}
       <p><a href="{% url 'message-detail' request.user.id userPro.user.id %}" >send a message</a>     
       </p>
