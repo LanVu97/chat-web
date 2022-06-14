@@ -1,13 +1,11 @@
 
-from email.policy import default
-import json
-from statistics import mode
+
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.dispatch import receiver 
-from django.db.models.signals import post_save 
-from social_core.backends.google import GoogleOAuth2
+# from django.dispatch import receiver 
+# from django.db.models.signals import post_save 
+# from social_core.backends.google import GoogleOAuth2
 # Create your models here.
         
 class AccountUser(AbstractUser):

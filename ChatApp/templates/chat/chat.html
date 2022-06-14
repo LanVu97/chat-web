@@ -13,7 +13,7 @@
                         class="collection-item row">
                         <img src="{{friend.image.url}}" class="col s4">
                         <div class="col s8">
-                            <span class="title" style="font-weight: bolder">{{friend.user.username}}</span>
+                            <span class="title" style="font-weight: bolder">{{friend.user.profile.username}}</span>
                         </div>
                     </a>
                     {% endfor %}
@@ -61,7 +61,7 @@
     // For receiving, set global variables to be used by the 'receive' function
     sender_id = "{{ receiver.id }}"; 
     receiver_id = "{{ request.user.id }}"
-    sender_username = "{{ receiver.user.username }}";
+    // sender_username = "{{ receiver.user.profile.username }}";
 
     //For sending
     $(document).on('submit', '#chat-box', function (e) {
