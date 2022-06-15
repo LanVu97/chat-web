@@ -28,7 +28,7 @@
 
                             <div class="card-action">
                                 {% if user.is_authenticated %}
-                                <p>Logged as {{ user.username }}</p>
+                                <p>Logged as {{ user.profile.username }}</p>
                                 <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
                                 {% else %}
 
