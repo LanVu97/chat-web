@@ -9,7 +9,7 @@
  
     <li class="collection-item avatar">
       <img src="{{userPro.image.url}}" alt="" class="circle">
-      <span class="title">{{userPro.user.username}}</span>
+      <span class="title">{{userPro.user.profile.username}}</span>
       {% if userPro not in profile.friends.all and userPro.user != request.user %}
         {% if userPro.was_send == False %}
       <a class=" btn secondary-content" href="{% url 'send_friend_request' userPro.user.id %}">Send a friend request</a>
