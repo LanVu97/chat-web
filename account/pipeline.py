@@ -1,5 +1,5 @@
 from .models import Profile
-# import urllib.request 
+import urllib.request 
 from django.conf import settings
 def save_profile(backend, user, response, *args, **kwargs):
     if backend.name == 'google-oauth2':       
@@ -11,9 +11,9 @@ def save_profile(backend, user, response, *args, **kwargs):
             
             profile = Profile.objects.create(user=user)
             url = response['picture']
-            local = settings.MEDIA_ROOT + 'account/'
-
-            # result = urllib.request.urlretrieve(url, f'{local}avatarUser_{user.id}.jpg')
+            local = settings.MEDIA_ROOT + '/account/'
+            print('this is link file' +local)
+            result = urllib.request.urlretrieve(url, f'{local}avatarUser_{user.id}.jpg')
             link = f'account/avatarUser_{user.id}.jpg'
         
             profile.image = link
